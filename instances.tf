@@ -23,21 +23,6 @@ resource "aws_instance" "tableau" {
   }
 }
 
-resource "aws_ebs_volume" "tableau_volume" {
-  size                     =   500
-  availability_zone        =   "eu-west-2a"
-  type                     =   "gp2"
-  encrypted                =   true
-  kms_key_id               =   "${data.aws_kms_key.ebs_kms_key.id}"
-}
-
-resource "aws_volume_attachment" "attached_tableau_volume" {
-  device_name     =   "/dev/sda1"
-  volume_id       =   "${aws_ebs_volume.tableau_volume.id}"
-  instance_id     =   "${aws_instance.tableau.id}"
-  skip_destroy    =   true
-}
-
 resource "aws_security_group" "tableau" {
   vpc_id = "${var.opsvpc_id}"
 
