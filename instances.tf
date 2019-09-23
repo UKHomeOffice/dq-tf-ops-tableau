@@ -28,7 +28,7 @@ resource "aws_ebs_volume" "tableau_volume" {
   availability_zone        =   "eu-west-2a"
   type                     =   "gp2"
   encrypted                =   true
-  kms_key_id               =   "arn:aws:kms:eu-west-2:337779336338:key/d87da33e-22aa-4360-b400-a81cbed2385f"
+  kms_key_id               =   "${data.aws_kms_key.ebs_kms_key.id}"
 }
 
 resource "aws_volume_attachment" "attached_tableau_volume" {
