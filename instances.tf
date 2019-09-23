@@ -33,7 +33,7 @@ resource "aws_ebs_volume" "tableau_volume" {
 
 resource "aws_volume_attachment" "attached_tableau_volume" {
   device_name     =   "/dev/sda1"
-  volume_id       =   "${aws_ebs_volume.tableau_volume.id" {
+  volume_id       =   "${aws_ebs_volume.tableau_volume.id}"
   instance_id     =   "${aws_instance.tableau.id}"
   skip_destroy    =   true
 }
