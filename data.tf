@@ -13,3 +13,10 @@ data "aws_ami" "tableau" {
     "self",
   ]
 }
+
+
+data "aws_caller_identity" "current" {}
+
+data "aws_kms_key" "ebs_kms"key" {
+  key_id = "alias/aws/ebs"
+}

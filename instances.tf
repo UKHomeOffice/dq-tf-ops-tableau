@@ -21,6 +21,12 @@ resource "aws_instance" "tableau" {
   tags = {
     Name = "ec2-dev-${local.naming_suffix}"
   }
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = "500"
+    encrypted   = true
+    kms_key_id = "{data.aws_kms_key.ebs_kms_key.id}"
+  }
 }
 
 resource "aws_security_group" "tableau" {
