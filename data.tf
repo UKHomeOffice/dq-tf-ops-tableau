@@ -17,6 +17,6 @@ data "aws_ami" "tableau" {
 
 data "aws_caller_identity" "current" {}
 
-data "aws_kms_key" "ebs_kms"key" {
+data "aws_kms_key" "ebs_kms_key" {
   key_id = "alias/aws/ebs"
 }
