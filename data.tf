@@ -13,3 +13,7 @@ data "aws_ami" "tableau" {
     "self",
   ]
 }
+
+data "aws_iam_policy" "ops-win-athena" {
+  name = "ops-win-athena-ops-${var.naming_suffix}-dq"
+}
