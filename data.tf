@@ -15,7 +15,3 @@ data "aws_ami" "tableau" {
 }
 
 data "aws_caller_identity" "current" {}
-
-data "aws_iam_policy" "ops-win-athena" {
-  arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:policy/ops-win-athena-ops-${var.naming_suffix}-dq"
-}

@@ -19,7 +19,7 @@ EOF
 
 resource "aws_iam_role_policy_attachment" "tableau" {
   role       = "${aws_iam_role.tableau.name}"
-  policy_arn = "${data.aws_iam_policy.ops-win-athena.arn}"
+  policy_arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:policy/ops-win-athena-ops-${var.naming_suffix}-dq"
 }
 
 resource "aws_iam_instance_profile" "tableau" {
