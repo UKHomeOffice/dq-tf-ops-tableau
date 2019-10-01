@@ -30,3 +30,7 @@ variable "az" {
 variable "route_table_id" {
   description = "Route table ID"
 }
+
+variable "ops-win-iam-role" {
+  description "ops-win-athena role ID passed from dq-tf-ops"
+}
