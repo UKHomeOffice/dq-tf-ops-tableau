@@ -32,5 +32,5 @@ variable "route_table_id" {
 }
 
 variable "ops-win-iam-role" {
-  description "ops-win-athena role ID passed from dq-tf-ops"
+  description = "ops-win-athena role ID passed from dq-tf-ops"
 }
