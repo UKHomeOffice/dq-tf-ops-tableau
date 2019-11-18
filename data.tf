@@ -13,3 +13,9 @@ data "aws_ami" "tableau" {
     "self",
   ]
 }
+
+data "aws_kms_key" "glue" {
+  key_id = "alias/aws/glue"
+}
+
+data "aws_caller_identity" "current" {}

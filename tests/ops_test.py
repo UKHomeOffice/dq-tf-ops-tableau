@@ -30,6 +30,14 @@ class TestE2E(unittest.TestCase):
               vpc_subnet_cidr_block     = "10.2.1.0/24"
               route_table_id            = "1234"
               ops_win_iam_role          = "1234"
+              ops_config_bucket               = "s3-dq-ops-config"
+              ops_nfs_backup_bucket           = "ops_nfs_backup_bucket-test"
+              dq_pipeline_ops_readwrite_database_name_list = ["api_input"]
+              dq_pipeline_ops_readonly_database_name_list  = ["api_input"]
+              dq_pipeline_ops_readwrite_bucket_list        = ["s3-bucket-name"]
+              dq_pipeline_ops_readonly_bucket_list         = ["s3-bucket-name"]
+              dq_pipeline_ops_freight_readwrite_bucket_list        = ["s3-bucket-name"]
+              dq_pipeline_ops_freight_readwrite_database_name_list = ["a-database-name"]
             }
         """
         self.result = Runner(self.snippet).result
