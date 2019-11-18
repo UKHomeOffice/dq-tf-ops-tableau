@@ -41,7 +41,7 @@ resource "aws_iam_role_policy" "ops_win_athena" {
         "${join("\",\"", formatlist("arn:aws:s3:::%s-%s", var.dq_pipeline_ops_readwrite_bucket_list, var.namespace))}",
         "${join("\",\"", formatlist("arn:aws:s3:::%s-%s/*", var.dq_pipeline_ops_readwrite_bucket_list, var.namespace))}",
         "arn:aws:s3:::${var.ops_config_bucket}",
-        "arn:aws:s3:::${var.ops_config_bucket}/*",
+        "arn:aws:s3:::${var.ops_config_bucket}/*"
       ]
     },
     {
