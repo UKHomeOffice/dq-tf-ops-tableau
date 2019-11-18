@@ -50,3 +50,13 @@ variable "apps_aws_bucket_key" {
 variable "namespace" {
   description = "namespace"
 }
+
+variable "dq_pipeline_ops_readwrite_database_name_list" {
+  description = "RW Database list from dq-tf-apps"
+  type        = "list"
+}
+
+variable "dq_pipeline_ops_readonly_database_name_list" {
+  description = "RO Database list from dq-tf-apps"
+  type        = "list"
+}
