@@ -1,7 +1,5 @@
 variable "ops_config_bucket" {}
 variable "ops_config_bucket" {}
-variable "ops_nfs_backup_bucket" {}
-
 
 variable "key_name" {
   description = "Default SSH key name for EC2 instances"
@@ -58,14 +56,4 @@ variable "dq_pipeline_ops_readonly_bucket_list" {
 
 variable "apps_aws_bucket_key" {
   description = "Apps KMS key"
-}
-
-variable "dq_pipeline_ops_freight_readwrite_bucket_list" {
-  description = "RW Bucket list from dq-tf-apps"
-  type        = "list"
-}
-
-variable "dq_pipeline_ops_freight_readwrite_database_name_list" {
-  description = "RW Database list from dq-tf-apps"
-  type        = "list"
 }
