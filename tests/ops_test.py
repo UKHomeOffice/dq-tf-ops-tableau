@@ -29,7 +29,7 @@ class TestE2E(unittest.TestCase):
               tableau_subnet_cidr_block = "10.2.1.0/24"
               vpc_subnet_cidr_block     = "10.2.1.0/24"
               route_table_id            = "1234"
-              ops-win-iam-role          = "1234"
+              ops_win_iam_role          = "1234"
             }
         """
         self.result = Runner(self.snippet).result
