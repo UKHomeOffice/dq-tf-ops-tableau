@@ -5,7 +5,7 @@ resource "aws_instance" "tableau" {
   vpc_security_group_ids      = ["${aws_security_group.tableau.id}"]
   subnet_id                   = "${aws_subnet.tableau_subnet.id}"
   private_ip                  = "${var.tableau_dev_ip}"
-  iam_instance_profile        = "${var.ops-win-iam-role}"
+  iam_instance_profile        = "${var.ops_win_iam_role}"
   associate_public_ip_address = false
   monitoring                  = true
 
