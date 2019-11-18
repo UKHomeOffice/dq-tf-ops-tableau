@@ -5,7 +5,7 @@ variable "key_name" {
 
 variable "tableau_dev_ip" {
   description = "Tableau Development IP address"
-  default = "10.0.0.1"
+  default     = "10.0.0.1"
 }
 variable "opsvpc_id" {
   description = "OPS VPC ID"
@@ -31,6 +31,6 @@ variable "route_table_id" {
   description = "Route table ID"
 }
 
-variable "ops-win-iam-role" {
+variable "ops_win_iam_role" {
   description = "ops-win-athena role ID passed from dq-tf-ops"
 }
