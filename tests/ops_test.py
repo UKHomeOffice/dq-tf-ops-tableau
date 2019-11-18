@@ -29,8 +29,9 @@ class TestE2E(unittest.TestCase):
               tableau_subnet_cidr_block = "10.2.1.0/24"
               vpc_subnet_cidr_block     = "10.2.1.0/24"
               route_table_id            = "1234"
-              ops_win_iam_role          = "1234"
-              ops_config_bucket               = "s3-dq-ops-config"
+              ops_config_bucket         = "s3-dq-ops-config"
+              apps_aws_bucket_key       = "1234"
+              namespace                 = "NOTPROD"
               dq_pipeline_ops_readwrite_database_name_list = ["api_input"]
               dq_pipeline_ops_readonly_database_name_list  = ["api_input"]
               dq_pipeline_ops_readwrite_bucket_list        = ["s3-bucket-name"]
