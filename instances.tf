@@ -24,6 +24,32 @@ resource "aws_instance" "tableau" {
   }
 }
 
+resource "aws_instance" "tableau2" {
+  key_name                    = "${var.key_name}"
+  ami                         = "${data.aws_ami.tableau.id}"
+  instance_type               = "t2.large"
+  vpc_security_group_ids      = ["${aws_security_group.tableau.id}"]
+  subnet_id                   = "${aws_subnet.tableau_subnet.id}"
+  private_ip                  = "${var.tableau_dev2_ip}"
+  iam_instance_profile        = "${aws_iam_instance_profile.tableau.id}"
+  associate_public_ip_address = false
+  monitoring                  = true
+
+  lifecycle {
+    prevent_destroy = true
+
+    ignore_changes = [
+      "user_data",
+      "ami",
+      "instance_type",
+    ]
+  }
+
+  tags = {
+    Name = "ec2-dev2-${local.naming_suffix}"
+  }
+}
+
 resource "aws_security_group" "tableau" {
   vpc_id = "${var.opsvpc_id}"
 

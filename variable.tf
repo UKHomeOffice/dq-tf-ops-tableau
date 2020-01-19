@@ -9,6 +9,12 @@ variable "tableau_dev_ip" {
   description = "Tableau Development IP address"
   default     = "10.0.0.1"
 }
+
+variable "tableau_dev2_ip" {
+  description = "Tableau Development2 IP address"
+  default     = "10.0.0.2"
+}
+
 variable "opsvpc_id" {
   description = "OPS VPC ID"
 }
