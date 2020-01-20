@@ -10,8 +10,8 @@ variable "tableau_dev_ip" {
   default     = "10.0.0.1"
 }
 
-variable "tableau_deployment2_ip" {
-  description = "Tableau Deployment2 IP address"
+variable "tableau_deployment_ip" {
+  description = "Tableau Deployment IP address"
   default     = "10.0.0.2"
 }
 
