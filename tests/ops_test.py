@@ -25,6 +25,7 @@ class TestE2E(unittest.TestCase):
               az                        = "eu-west-2a"
               naming_suffix             = "ops-preprod-dq"
               tableau_dev_ip            = "1.2.3.4"
+              tableau_deployment_ip     = "1.2.3.5"
               opsvpc_id                 = "1234"
               tableau_subnet_cidr_block = "10.2.1.0/24"
               vpc_subnet_cidr_block     = "10.2.1.0/24"
@@ -60,6 +61,9 @@ class TestE2E(unittest.TestCase):
 
     def test_name_tableau(self):
         self.assertEqual(self.result['tableau']["aws_instance.tableau"]["tags.Name"], "ec2-dev-tableau-ops-preprod-dq")
+
+    def test_name_tableau2(self):
+        self.assertEqual(self.result['tableau']["aws_instance.tableau2"]["tags.Name"], "ec2-deployment-tableau-ops-preprod-dq")
 
 
 if __name__ == '__main__':
