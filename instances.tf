@@ -30,7 +30,7 @@ resource "aws_instance" "tableau2" {
   instance_type               = "t2.large"
   vpc_security_group_ids      = ["${aws_security_group.tableau.id}"]
   subnet_id                   = "${aws_subnet.tableau_subnet.id}"
-  private_ip                  = "${var.tableau_deployment2_ip}"
+  private_ip                  = "${var.tableau_deployment_ip}"
   iam_instance_profile        = "${aws_iam_instance_profile.tableau.id}"
   associate_public_ip_address = false
   monitoring                  = true
@@ -46,7 +46,7 @@ resource "aws_instance" "tableau2" {
   }
 
   tags = {
-    Name = "ec2-deployment2-${local.naming_suffix}"
+    Name = "ec2-deployment-${local.naming_suffix}"
   }
 }
 
