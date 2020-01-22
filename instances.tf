@@ -24,7 +24,7 @@ resource "aws_instance" "tableau" {
   }
 }
 
-resource "aws_instance" "tableau2" {
+resource "aws_instance" "tableau_deployment" {
   key_name                    = "${var.key_name}"
   ami                         = "${data.aws_ami.tableau.id}"
   instance_type               = "t2.large"
