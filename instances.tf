@@ -9,6 +9,13 @@ resource "aws_instance" "tableau" {
   associate_public_ip_address = false
   monitoring                  = true
 
+  user_data = <<EOF
+    <powershell>
+    Rename-Computer -NewName "TABLEAU" -Restart
+    [Environment]::SetEnvironmentVariable("S3_OPS_CONFIG_BUCKET", "${var.ops_config_bucket}/sqlworkbench", "Machine")
+    </powershell>
+EOF
+
   lifecycle {
     prevent_destroy = true
 
