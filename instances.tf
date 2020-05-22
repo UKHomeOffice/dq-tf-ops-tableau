@@ -1,11 +1,11 @@
 resource "aws_instance" "tableau" {
-  key_name                    = "${var.key_name}"
-  ami                         = "${data.aws_ami.tableau.id}"
+  key_name                    = var.key_name
+  ami                         = data.aws_ami.tableau.id
   instance_type               = "t2.large"
-  vpc_security_group_ids      = ["${aws_security_group.tableau.id}"]
-  subnet_id                   = "${aws_subnet.tableau_subnet.id}"
-  private_ip                  = "${var.tableau_dev_ip}"
-  iam_instance_profile        = "${aws_iam_instance_profile.tableau.id}"
+  vpc_security_group_ids      = [aws_security_group.tableau.id]
+  subnet_id                   = aws_subnet.tableau_subnet.id
+  private_ip                  = var.tableau_dev_ip
+  iam_instance_profile        = aws_iam_instance_profile.tableau.id
   associate_public_ip_address = false
   monitoring                  = true
 
@@ -16,13 +16,14 @@ resource "aws_instance" "tableau" {
 	</powershell>
 EOF
 
+
   lifecycle {
     prevent_destroy = true
 
     ignore_changes = [
-      "user_data",
-      "ami",
-      "instance_type",
+      user_data,
+      ami,
+      instance_type,
     ]
   }
 
@@ -32,13 +33,13 @@ EOF
 }
 
 resource "aws_instance" "tableau2" {
-  key_name                    = "${var.key_name}"
-  ami                         = "${data.aws_ami.tableau.id}"
+  key_name                    = var.key_name
+  ami                         = data.aws_ami.tableau.id
   instance_type               = "t2.large"
-  vpc_security_group_ids      = ["${aws_security_group.tableau.id}"]
-  subnet_id                   = "${aws_subnet.tableau_subnet.id}"
-  private_ip                  = "${var.tableau_deployment_ip}"
-  iam_instance_profile        = "${aws_iam_instance_profile.tableau.id}"
+  vpc_security_group_ids      = [aws_security_group.tableau.id]
+  subnet_id                   = aws_subnet.tableau_subnet.id
+  private_ip                  = var.tableau_deployment_ip
+  iam_instance_profile        = aws_iam_instance_profile.tableau.id
   associate_public_ip_address = false
   monitoring                  = true
 
@@ -49,13 +50,14 @@ resource "aws_instance" "tableau2" {
 	</powershell>
 EOF
 
+
   lifecycle {
     prevent_destroy = true
 
     ignore_changes = [
-      "user_data",
-      "ami",
-      "instance_type",
+      user_data,
+      ami,
+      instance_type,
     ]
   }
 
@@ -65,7 +67,7 @@ EOF
 }
 
 resource "aws_security_group" "tableau" {
-  vpc_id = "${var.opsvpc_id}"
+  vpc_id = var.opsvpc_id
 
   tags = {
     Name = "sg-${local.naming_suffix}"
@@ -77,8 +79,8 @@ resource "aws_security_group" "tableau" {
     protocol  = "TCP"
 
     cidr_blocks = [
-      "${var.tableau_subnet_cidr_block}",
-      "${var.vpc_subnet_cidr_block}"
+      var.tableau_subnet_cidr_block,
+      var.vpc_subnet_cidr_block,
     ]
   }
 
@@ -92,3 +94,4 @@ resource "aws_security_group" "tableau" {
     ]
   }
 }
+
