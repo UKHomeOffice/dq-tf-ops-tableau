@@ -1,4 +1,5 @@
-variable "ops_config_bucket" {}
+variable "ops_config_bucket" {
+}
 
 variable "key_name" {
   description = "Default SSH key name for EC2 instances"
@@ -41,12 +42,12 @@ variable "route_table_id" {
 
 variable "dq_pipeline_ops_readwrite_bucket_list" {
   description = "RW Bucket list from dq-tf-apps"
-  type        = "list"
+  type        = list(string)
 }
 
 variable "dq_pipeline_ops_readonly_bucket_list" {
   description = "RO Bucket list from dq-tf-apps"
-  type        = "list"
+  type        = list(string)
 }
 
 variable "apps_aws_bucket_key" {
@@ -59,10 +60,11 @@ variable "namespace" {
 
 variable "dq_pipeline_ops_readwrite_database_name_list" {
   description = "RW Database list from dq-tf-apps"
-  type        = "list"
+  type        = list(string)
 }
 
 variable "dq_pipeline_ops_readonly_database_name_list" {
   description = "RO Database list from dq-tf-apps"
-  type        = "list"
+  type        = list(string)
 }
+

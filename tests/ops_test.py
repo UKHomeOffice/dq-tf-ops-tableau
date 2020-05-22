@@ -18,7 +18,7 @@ class TestE2E(unittest.TestCase):
               source = "./mymodule"
 
               providers = {
-                aws = "aws"
+                aws =   aws
               }
 
               vpc_subnet_cidr_block     = "10.2.1.0/24"
@@ -28,7 +28,6 @@ class TestE2E(unittest.TestCase):
               tableau_deployment_ip     = "1.2.3.5"
               opsvpc_id                 = "1234"
               tableau_subnet_cidr_block = "10.2.1.0/24"
-              vpc_subnet_cidr_block     = "10.2.1.0/24"
               route_table_id            = "1234"
               ops_config_bucket         = "s3-dq-ops-config"
               apps_aws_bucket_key       = "1234"
@@ -39,31 +38,29 @@ class TestE2E(unittest.TestCase):
               dq_pipeline_ops_readonly_bucket_list         = ["s3-bucket-name"]
             }
         """
-        self.result = Runner(self.snippet).result
-
-    def test_root_destroy(self):
-        self.assertEqual(self.result["destroy"], False)
+        self.runner = Runner(self.snippet)
+        self.result = self.runner.result
 
     def test_subnet_cidr_block(self):
-        self.assertEqual(self.result['tableau']["aws_subnet.tableau_subnet"]["cidr_block"], "10.2.1.0/24")
+        self.assertEqual(self.runner.get_value("module.tableau.aws_subnet.tableau_subnet", "cidr_block"), "10.2.1.0/24")
 
     def test_az(self):
-        self.assertEqual(self.result['tableau']["aws_subnet.tableau_subnet"]["availability_zone"], "eu-west-2a")
+        self.assertEqual(self.runner.get_value("module.tableau.aws_subnet.tableau_subnet", "availability_zone"), "eu-west-2a")
 
     def test_name_tableau_sg(self):
-        self.assertEqual(self.result['tableau']["aws_security_group.tableau"]["tags.Name"], "sg-tableau-ops-preprod-dq")
+        self.assertEqual(self.runner.get_value("module.tableau.aws_security_group.tableau", "tags"), {'Name': "sg-tableau-ops-preprod-dq"})
 
     def test_table_association(self):
-        self.assertEqual(self.result['tableau']["aws_route_table_association.tableau_subnet"]["route_table_id"], "1234")
+        self.assertEqual(self.runner.get_value("module.tableau.aws_route_table_association.tableau_subnet", "route_table_id"), "1234")
 
     def test_name_suffix_tableau_subnet(self):
-        self.assertEqual(self.result['tableau']["aws_subnet.tableau_subnet"]["tags.Name"], "subnet-tableau-ops-preprod-dq")
+        self.assertEqual(self.runner.get_value("module.tableau.aws_subnet.tableau_subnet", "tags"), {'Name': "subnet-tableau-ops-preprod-dq"})
 
     def test_name_tableau(self):
-        self.assertEqual(self.result['tableau']["aws_instance.tableau"]["tags.Name"], "ec2-dev-tableau-ops-preprod-dq")
+        self.assertEqual(self.runner.get_value("module.tableau.aws_instance.tableau", "tags"), {'Name': "ec2-dev-tableau-ops-preprod-dq"})
 
     def test_name_tableau2(self):
-        self.assertEqual(self.result['tableau']["aws_instance.tableau2"]["tags.Name"], "ec2-deployment-tableau-ops-preprod-dq")
+        self.assertEqual(self.runner.get_value("module.tableau.aws_instance.tableau2", "tags"), {'Name': "ec2-deployment-tableau-ops-preprod-dq"})
 
 
 if __name__ == '__main__':
