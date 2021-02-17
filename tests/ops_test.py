@@ -32,10 +32,11 @@ class TestE2E(unittest.TestCase):
               ops_config_bucket         = "s3-dq-ops-config"
               apps_aws_bucket_key       = "1234"
               namespace                 = "NOTPROD"
-              dq_pipeline_ops_readwrite_database_name_list = ["api_input"]
-              dq_pipeline_ops_readonly_database_name_list  = ["api_input"]
-              dq_pipeline_ops_readwrite_bucket_list        = ["s3-bucket-name"]
-              dq_pipeline_ops_readonly_bucket_list         = ["s3-bucket-name"]
+              dq_pipeline_ops_readwrite_database_name_list       = ["api_input"]
+              dq_pipeline_ops_readwrite_database_name_list_fedat = ["fedat_reporting"]
+              dq_pipeline_ops_readonly_database_name_list        = ["api_input"]
+              dq_pipeline_ops_readwrite_bucket_list              = ["s3-bucket-name"]
+              dq_pipeline_ops_readonly_bucket_list               = ["s3-bucket-name"]
             }
         """
         self.runner = Runner(self.snippet)
