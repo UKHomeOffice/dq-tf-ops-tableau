@@ -1,7 +1,7 @@
 resource "aws_instance" "tableau" {
   key_name                    = var.key_name
   ami                         = data.aws_ami.tableau.id
-  instance_type               = "t3.large"
+  instance_type               = "t3a.xlarge"
   vpc_security_group_ids      = [aws_security_group.tableau.id]
   subnet_id                   = aws_subnet.tableau_subnet.id
   private_ip                  = var.tableau_dev_ip
