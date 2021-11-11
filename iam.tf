@@ -20,9 +20,8 @@ EOF
 
 }
 
-resource "aws_iam_role_policy" "ops_win_athena" {
+resource "aws_iam_policy" "ops_win_athena" {
   name = "ops-win-tableau-athena-${local.naming_suffix}"
-  role = aws_iam_role.tableau.name
 
   policy = <<EOF
 {
@@ -129,6 +128,13 @@ resource "aws_iam_role_policy" "ops_win_athena" {
     },
     {
       "Action": [
+        "ssm:GetParameter"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:ssm:eu-west-2:*:parameter/AD_AdminPasswordd"
+    },
+    {
+      "Action": [
         "kms:Encrypt",
         "kms:Decrypt",
         "kms:ReEncrypt*",
@@ -159,6 +165,11 @@ resource "aws_iam_role_policy" "ops_win_athena" {
 }
 EOF
 
+}
+
+resource "aws_iam_role_policy_attachment" "ops_win_athena" {
+  role       = aws_iam_role.tableau.name
+  policy_arn = aws_iam_policy.ops_win_athena.arn
 }
 
 resource "aws_iam_instance_profile" "tableau" {
