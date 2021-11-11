@@ -9,14 +9,6 @@ resource "aws_instance" "tableau" {
   associate_public_ip_address = false
   monitoring                  = true
 
-  user_data = <<EOF
-	<powershell>
-	Rename-Computer -NewName "DEVELOPMENT" -Restart
-  [Environment]::SetEnvironmentVariable("S3_OPS_CONFIG_BUCKET", "${var.ops_config_bucket}/sqlworkbench", "Machine")
-	</powershell>
-EOF
-
-
   lifecycle {
     prevent_destroy = true
 
@@ -42,14 +34,6 @@ resource "aws_instance" "tableau2" {
   iam_instance_profile        = aws_iam_instance_profile.tableau.id
   associate_public_ip_address = false
   monitoring                  = true
-
-  user_data = <<EOF
-	<powershell>
-  Rename-Computer -NewName "DEPLOYMENT" -Restart
-  [Environment]::SetEnvironmentVariable("S3_OPS_CONFIG_BUCKET", "${var.ops_config_bucket}/sqlworkbench", "Machine")
-	</powershell>
-EOF
-
 
   lifecycle {
     prevent_destroy = true
