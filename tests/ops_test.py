@@ -59,6 +59,9 @@ class TestE2E(unittest.TestCase):
     def test_name_tableau(self):
         self.assertEqual(self.runner.get_value("module.tableau.aws_instance.tableau", "tags"), {'Name': "ec2-dev-tableau-ops-preprod-dq"})
 
+    def test_name_tableau2(self):
+        self.assertEqual(self.runner.get_value("module.tableau.aws_instance.tableau2", "tags"), {'Name': "ec2-deployment-tableau-ops-preprod-dq-0"})
+
 
 if __name__ == '__main__':
     unittest.main()
