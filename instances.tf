@@ -46,7 +46,7 @@ resource "aws_instance" "tableau2" {
   }
 
   tags = {
-    Name = "ec2-deployment-${local.naming_suffix}"
+    Name = "ec2-deployment-${local.naming_suffix}-${count.index}"
   }
 }
 
