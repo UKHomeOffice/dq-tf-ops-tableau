@@ -11,10 +11,10 @@ variable "tableau_dev_ip" {
   default     = "10.0.0.1"
 }
 
-variable "tableau_deployment_ip" {
-  description = "Tableau Deployment IP address"
-  default     = "10.0.0.2"
-}
+# variable "tableau_deployment_ip" {
+#   description = "Tableau Deployment IP address"
+#   default     = "10.0.0.2"
+# }
 
 variable "opsvpc_id" {
   description = "OPS VPC ID"
@@ -66,4 +66,10 @@ variable "dq_pipeline_ops_readwrite_database_name_list" {
 variable "dq_pipeline_ops_readonly_database_name_list" {
   description = "RO Database list from dq-tf-apps"
   type        = list(string)
+}
+
+variable "tableau_deployment_ip" {
+  description = "IP address of EC2 instance"
+  type        = list(string)
+  default     = ["10.0.0.2", "10.0.0.3", "10.0.0.4", "10.0.0.5"]
 }
