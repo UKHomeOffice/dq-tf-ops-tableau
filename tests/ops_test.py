@@ -36,6 +36,7 @@ class TestE2E(unittest.TestCase):
               dq_pipeline_ops_readonly_database_name_list        = ["api_input"]
               dq_pipeline_ops_readwrite_bucket_list              = ["s3-bucket-name"]
               dq_pipeline_ops_readonly_bucket_list               = ["s3-bucket-name"]
+              account_id                      = {"preprod" = "235678"}
             }
         """
         self.runner = Runner(self.snippet)
