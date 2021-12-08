@@ -31,12 +31,12 @@ class TestE2E(unittest.TestCase):
               route_table_id            = "1234"
               ops_config_bucket         = "s3-dq-ops-config"
               apps_aws_bucket_key       = "1234"
-              namespace                 = "NOTPROD"
+              namespace                 = "preprod"
               dq_pipeline_ops_readwrite_database_name_list       = ["api_input"]
               dq_pipeline_ops_readonly_database_name_list        = ["api_input"]
               dq_pipeline_ops_readwrite_bucket_list              = ["s3-bucket-name"]
               dq_pipeline_ops_readonly_bucket_list               = ["s3-bucket-name"]
-              account_id                      = {"preprod" = "235678"}
+              account_id                                         = {"preprod" = "235678"}
             }
         """
         self.runner = Runner(self.snippet)
