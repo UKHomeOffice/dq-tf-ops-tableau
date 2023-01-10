@@ -25,7 +25,7 @@ resource "aws_instance" "tableau" {
 }
 
 resource "aws_instance" "tableau2" {
-  count                       = var.namespace == "prod" ? "2" : "1"
+  count                       = var.namespace == "prod" ? "4" : "1"
   key_name                    = var.key_name
   ami                         = data.aws_ami.tableau.id
   instance_type               = var.namespace == "prod" ? "t3a.xlarge" : "t3a.large"
