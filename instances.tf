@@ -1,31 +1,5 @@
 resource "aws_instance" "tableau" {
-  key_name                    = var.key_name
-  ami                         = data.aws_ami.tableau.id
-  instance_type               = var.namespace == "prod" ? "t3a.xlarge" : "t3a.large"
-  vpc_security_group_ids      = [aws_security_group.tableau.id]
-  subnet_id                   = aws_subnet.tableau_subnet.id
-  private_ip                  = var.tableau_dev_ip
-  iam_instance_profile        = aws_iam_instance_profile.tableau.id
-  associate_public_ip_address = false
-  monitoring                  = true
-
-  lifecycle {
-    prevent_destroy = true
-
-    ignore_changes = [
-      user_data,
-      ami,
-      instance_type,
-    ]
-  }
-
-  tags = {
-    Name = "ec2-dev-${local.naming_suffix}"
-  }
-}
-
-resource "aws_instance" "tableau2" {
-  count                       = var.namespace == "prod" ? "4" : "1"
+  count                       = var.namespace == "prod" ? "3" : "1"
   key_name                    = var.key_name
   ami                         = data.aws_ami.tableau.id
   instance_type               = var.namespace == "prod" ? "t3a.xlarge" : "t3a.large"
