@@ -24,7 +24,6 @@ class TestE2E(unittest.TestCase):
               vpc_subnet_cidr_block     = "10.2.1.0/24"
               az                        = "eu-west-2a"
               naming_suffix             = "ops-preprod-dq"
-              tableau_dev_ip            = "1.2.3.4"
               tableau_deployment_ip     = ["1.2.3.4", "5.6.7.8"]
               opsvpc_id                 = "1234"
               tableau_subnet_cidr_block = "10.2.1.0/24"
