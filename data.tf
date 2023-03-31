@@ -5,6 +5,22 @@ data "aws_ami" "tableau" {
     name = "name"
 
     values = [
+      "dq-ops-win-tab-dev-*",
+    ]
+  }
+
+  owners = [
+    "self",
+  ]
+}
+
+data "aws_ami" "tableau_nineteen" {
+  most_recent = true
+
+  filter {
+    name = "name"
+
+    values = [
       "dq-ops-win-tab-dev-174*",
     ]
   }
