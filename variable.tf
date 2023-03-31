@@ -72,3 +72,7 @@ variable "tableau_deployment_ip" {
   type        = list(string)
   default     = ["10.0.0.0", "10.0.0.1", "10.0.0.2", "10.0.0.3", "10.0.0.4"]
 }
+
+variable "tableau_nineteen_deployment_ip" {
+  description = "IP address of EC2 tableau nineteen deployment bastion instance"
+}
