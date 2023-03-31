@@ -9,6 +9,16 @@ data "aws_ami" "tableau" {
     ]
   }
 
+  lifecycle {
+    prevent_destroy = true
+
+    ignore_changes = [
+      user_data,
+      ami,
+      instance_type,
+    ]
+  }
+
   owners = [
     "self",
   ]
@@ -21,7 +31,7 @@ data "aws_ami" "tableau_nineteen" {
     name = "name"
 
     values = [
-      "dq-ops-win-tab-dev-174*",
+      "dq-ops-win-tab-dev-180*",
     ]
   }
 
