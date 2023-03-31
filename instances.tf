@@ -10,14 +10,14 @@ resource "aws_instance" "tableau" {
   associate_public_ip_address = false
   monitoring                  = true
 
-  #lifecycle {
-  #  prevent_destroy = true
-  #
-  #  ignore_changes = [
-  #    user_data,
-  #    ami,
-  #  ]
-  #}
+  lifecycle {
+    prevent_destroy = true
+
+    ignore_changes = [
+      user_data,
+      ami,
+    ]
+  }
 
   tags = {
     Name = "ec2-deployment-${local.naming_suffix}-${count.index}"
