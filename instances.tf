@@ -25,7 +25,6 @@ resource "aws_instance" "tableau" {
 }
 
 resource "aws_instance" "tableau_nineteen" {
-  count                       = var.namespace == "prod" ? "1" : "1"
   key_name                    = var.key_name
   ami                         = data.aws_ami.tableau_nineteen.id
   instance_type               = var.namespace == "prod" ? "t3a.xlarge" : "t3a.large"
@@ -46,7 +45,7 @@ resource "aws_instance" "tableau_nineteen" {
   #}
 
   tags = {
-    Name = "ec2-deployment-nineteen-${local.naming_suffix}-${count.index}"
+    Name = "ec2-deployment-nineteen-${local.naming_suffix}"
   }
 }
 
