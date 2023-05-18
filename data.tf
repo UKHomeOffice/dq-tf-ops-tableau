@@ -21,7 +21,7 @@ data "aws_ami" "tableau_nineteen" {
     name = "name"
 
     values = [
-      "dq-ops-win-tab-dev-198*",
+      "dq-ops-win-tab-dev-201*",
     ]
   }
 
