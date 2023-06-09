@@ -20,7 +20,7 @@ resource "aws_instance" "tableau" {
   }
 
   tags = {
-    Name = "tab-dep-${count.index + 1}-${local.naming_suffix}"
+    Name = "ec2-deployment-${local.naming_suffix}-${count.index}"
   }
 }
 
