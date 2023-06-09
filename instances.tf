@@ -20,7 +20,7 @@ resource "aws_instance" "tableau" {
   }
 
   tags = {
-    Name = "ec2-deployment-${local.naming_suffix}-${count.index}"
+    Name = "tab-dep-${count.index + 1}-${local.naming_suffix}"
   }
 }
 
@@ -45,7 +45,7 @@ resource "aws_instance" "tableau_nineteen" {
   #}
 
   tags = {
-    Name = "ec2-deployment-nineteen-${local.naming_suffix}"
+    Name = "tab-dep-nineteen-${local.naming_suffix}"
   }
 }
 
