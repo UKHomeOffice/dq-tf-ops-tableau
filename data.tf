@@ -5,7 +5,7 @@ data "aws_ami" "tableau" {
     name = "name"
 
     values = [
-      "dq-ops-win-tab-dev- 2023-01-10T16*",
+      "dq-ops-win-tab-dev-258*"
     ]
   }
 
@@ -14,21 +14,22 @@ data "aws_ami" "tableau" {
   ]
 }
 
-data "aws_ami" "tableau_nineteen" {
-  most_recent = true
-
-  filter {
-    name = "name"
-
-    values = [
-      "dq-ops-win-tab-dev-258*",
-    ]
-  }
-
-  owners = [
-    "self",
-  ]
-}
+# To be deleted when all Tab Dep machines have been migrated
+#data "aws_ami" "tableau_nineteen" {
+#  most_recent = true
+#
+#  filter {
+#    name = "name"
+#
+#    values = [
+#      "dq-ops-win-tab-dev-258*",
+#    ]
+#  }
+#
+#  owners = [
+#    "self",
+#  ]
+#}
 
 data "aws_kms_key" "glue" {
   key_id = "alias/aws/glue"

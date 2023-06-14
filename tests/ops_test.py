@@ -24,8 +24,7 @@ class TestE2E(unittest.TestCase):
               vpc_subnet_cidr_block     = "10.2.1.0/24"
               az                        = "eu-west-2a"
               naming_suffix             = "ops-preprod-dq"
-              tableau_deployment_ip     = ["1.2.3.4", "5.6.7.8"]
-              tableau_nineteen_deployment_ip = "4.3.2.1"
+              tableau_deployment_ip     = ["1.2.3.4", "5.6.7.8", "1.2.3.4", "5.6.7.8"]
               opsvpc_id                 = "1234"
               tableau_subnet_cidr_block = "10.2.1.0/24"
               route_table_id            = "1234"
@@ -57,11 +56,11 @@ class TestE2E(unittest.TestCase):
     def test_name_suffix_tableau_subnet(self):
         self.assertEqual(self.runner.get_value("module.tableau.aws_subnet.tableau_subnet", "tags"), {'Name': "subnet-tableau-ops-preprod-dq"})
 
-    def test_name_tableau2(self):
-        self.assertEqual(self.runner.get_value("module.tableau.aws_instance.tableau[0]", "tags"), {'Name': "ec2-deployment-tableau-ops-preprod-dq-0"})
-
     # def test_name_tableau2(self):
-    #     self.assertEqual(self.runner.get_value("module.tableau.aws_instance.tableau[0]", "tags"), {'Name': "tab-dep-1-tableau-ops-preprod-dq"})
+    #     self.assertEqual(self.runner.get_value("module.tableau.aws_instance.tableau[0]", "tags"), {'Name': "ec2-deployment-tableau-ops-preprod-dq-0"})
+
+    def test_name_tableau2(self):
+        self.assertEqual(self.runner.get_value("module.tableau.aws_instance.tableau[0]", "tags"), {'Name': "tab-dep-1-tableau-ops-preprod-dq"})
 
 
 if __name__ == '__main__':
