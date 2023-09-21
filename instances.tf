@@ -10,6 +10,14 @@ resource "aws_instance" "tableau" {
   associate_public_ip_address = false
   monitoring                  = true
 
+  # Windows-specific settings
+  user_data = <<EOF
+                        <powershell>
+                          # Disable local Administrator
+                          Get-LocalUser | Where-Object {$_.Name -eq "Administrator"} | Disable-LocalUser
+                        </powershell>
+                      EOF
+
   lifecycle {
     prevent_destroy = true
 
