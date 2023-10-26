@@ -19,6 +19,9 @@ resource "aws_instance" "tableau" {
                           Set-NetFireWallProfile -Domain -LogBlocked True -LogMaxSize 20000 -LogFileName ‘%systemroot%\system32\LogFiles\Firewall\pfirewall.log’
                           # Disable local Administrator
                           Get-LocalUser | Where-Object {$_.Name -eq "Administrator"} | Disable-LocalUser
+                          # Add Instance metadata V2
+                          [string]$instance = Invoke-RestMethod -Method GET -Uri http://169.254.169.254/latest/meta-data/instance-id
+                          (Edit-EC2InstanceMetadataOption -InstanceId $instance -HttpTokens required -HttpEndpoint enabled).InstanceMetadataOptions
                         </powershell>
                       EOF
 
