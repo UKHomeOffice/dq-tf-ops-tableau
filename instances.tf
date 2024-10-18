@@ -116,17 +116,6 @@ resource "aws_security_group" "tableau" {
     ]
   }
 
-  #ingress {
-  #  from_port = 1024
-  #  to_port   = 65535
-  #  protocol  = "TCP"
-
-  #  cidr_blocks = [
-  #    var.tableau_subnet_cidr_block,
-  #    var.vpc_subnet_cidr_block,
-  #  ]
-  #}
-
   egress {
     from_port = 0
     to_port   = 0
