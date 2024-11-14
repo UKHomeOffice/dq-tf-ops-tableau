@@ -25,14 +25,14 @@ resource "aws_instance" "tableau" {
                         </powershell>
                       EOF
 
-  lifecycle {
-    prevent_destroy = true
-
-    ignore_changes = [
-      user_data,
-      ami,
-    ]
-  }
+  #lifecycle {
+  #  prevent_destroy = true
+  #
+  #  ignore_changes = [
+  #    user_data,
+  #    ami,
+  #  ]
+  #}
 
   tags = {
     Name = "tab-dep-${count.index + 1}-${local.naming_suffix}"
