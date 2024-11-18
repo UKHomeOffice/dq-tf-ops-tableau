@@ -5,7 +5,7 @@ data "aws_ami" "tableau" {
     name = "name"
 
     values = [
-      "dq-ops-win-tab-dev-350*"
+      "dq-ops-win-tab-dev-265*"
     ]
   }
 
