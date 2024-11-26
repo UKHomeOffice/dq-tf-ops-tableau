@@ -1,7 +1,8 @@
 
 terraform {
   required_version = ">= 0.13"
-  archive = {
+   required_providers {
+    archive = {
       source  = "hashicorp/archive"
       version = "~> 2.4.0"
     }
@@ -13,4 +14,5 @@ terraform {
       source  = "hashicorp/random"
       version = "~> 3.6"
     }
+   }  
 }
