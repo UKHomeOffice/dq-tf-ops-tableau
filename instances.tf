@@ -9,6 +9,10 @@ resource "aws_instance" "tableau" {
   iam_instance_profile        = aws_iam_instance_profile.tableau.id
   associate_public_ip_address = false
   monitoring                  = true
+  metadata_options {
+    http_endpoint = "enabled"
+    http_tokens   = "required"
+  }
 
   # Windows-specific settings
   user_data = <<EOF
