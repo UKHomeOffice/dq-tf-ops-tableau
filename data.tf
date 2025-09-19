@@ -5,7 +5,7 @@ data "aws_ami" "tableau" {
     name = "name"
 
     values = [
-      var.environment == "prod" ? "dq-ops-win-tab-dev-265*" : "dq-ops-win-tab-dev-422*",
+      "dq-ops-win-tab-dev-265*",
     ]
   }
 
