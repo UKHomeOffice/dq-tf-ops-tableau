@@ -30,7 +30,7 @@ resource "aws_instance" "tableau" {
                       EOF
 
   lifecycle {
-    prevent_destroy = true
+    #prevent_destroy = true
 
     ignore_changes = [
       user_data,
