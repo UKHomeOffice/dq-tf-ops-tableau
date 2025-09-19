@@ -8,7 +8,7 @@ data "aws_ami" "tableau" {
       var.environment == "prod" ? "dq-ops-win-tab-dev-265*" : "dq-ops-win-tab-dev-422*",
     ]
   }
-  
+
   owners = [
     "self",
   ]
