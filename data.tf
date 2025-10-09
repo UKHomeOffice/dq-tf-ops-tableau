@@ -14,6 +14,22 @@ data "aws_ami" "tableau" {
   ]
 }
 
+data "aws_ami" "tableau-test" {
+  most_recent = true
+
+  filter {
+    name = "name"
+
+    values = [
+      "dq-ops-win-tab-dev-429*",
+    ]
+  }
+
+  owners = [
+    "self",
+  ]
+}
+
 data "aws_kms_key" "glue" {
   key_id = "alias/aws/glue"
 }
