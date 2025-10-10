@@ -43,6 +43,55 @@ resource "aws_instance" "tableau" {
   }
 }
 
+# test tableau instance, change count to 0 when not in use
+# private_ip is based off their being 2 instances in notprod and this resource creating a 3rd instance
+
+resource "aws_instance" "tableau_test" {
+  count                       = var.namespace == "prod" ? "0" : "1" # for testing a single instance only
+  key_name                    = var.key_name
+  ami                         = data.aws_ami.tableau-test.id
+  instance_type               = "t3a.large"
+  vpc_security_group_ids      = [aws_security_group.tableau.id]
+  subnet_id                   = aws_subnet.tableau_subnet.id
+  private_ip                  = element(var.tableau_deployment_ip, 2)
+  iam_instance_profile        = aws_iam_instance_profile.tableau.id
+  associate_public_ip_address = false
+  monitoring                  = true
+  metadata_options {
+    http_endpoint = "enabled"
+    http_tokens   = "required"
+  }
+
+  # Windows-specific settings
+  user_data = <<EOF
+                        <powershell>
+                           # Enable Firewall
+                          Set-NetFirewallProfile -All -Enabled True
+                          # Enable Firewall logging
+                          Set-NetFireWallProfile -Domain -LogBlocked True -LogMaxSize 20000 -LogFileName ‘%systemroot%\system32\LogFiles\Firewall\pfirewall.log’
+                          # Disable local Administrator
+                          Get-LocalUser | Where-Object {$_.Name -eq "Administrator"} | Disable-LocalUser
+                          # Add Instance metadata V2
+                          [string]$instance = Invoke-RestMethod -Method GET -Uri http://169.254.169.254/latest/meta-data/instance-id
+                          (Edit-EC2InstanceMetadataOption -InstanceId $instance -HttpTokens required -HttpEndpoint enabled).InstanceMetadataOptions
+                        </powershell>
+                      EOF
+
+  # lifecycle {
+  #   prevent_destroy = true
+
+  #   ignore_changes = [
+  #     user_data,
+  #     ami,
+  #   ]
+  # }
+
+  tags = {
+    Name = "tab-dep-test-${count.index + 1}-${local.naming_suffix}"
+  }
+}
+
+
 # To be deleted when all Tab Dep machines have been migrated
 #resource "aws_instance" "tableau_nineteen" {
 #  key_name                    = var.key_name
