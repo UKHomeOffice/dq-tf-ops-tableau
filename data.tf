@@ -21,7 +21,7 @@ data "aws_ami" "tableau-test" {
     name = "name"
 
     values = [
-      "dq-ops-win-tab-dev-430*",
+      var.namespace == "prod" ? "dq-ops-win-tab-dev-429*" : "dq-ops-win-tab-dev-430*",
     ]
   }
 
