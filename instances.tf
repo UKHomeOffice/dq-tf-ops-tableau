@@ -47,7 +47,7 @@ resource "aws_instance" "tableau" {
 # private_ip is based off their being 2 instances in notprod and this resource creating a 3rd instance
 
 resource "aws_instance" "tableau_test" {
-  count                       = var.namespace == "prod" ? "0" : "1" # for testing a single instance only
+  count                       = var.namespace == "prod" ? "0" : "0" # for testing a single instance only
   key_name                    = var.key_name
   ami                         = data.aws_ami.tableau-test.id
   instance_type               = "t3a.large"
