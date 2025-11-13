@@ -1,5 +1,5 @@
 resource "aws_instance" "tableau" {
-  count                       = var.namespace == "prod" ? "3" : "2"
+  count                       = var.namespace == "prod" ? "1" : "2"
   key_name                    = var.key_name
   ami                         = data.aws_ami.tableau.id
   instance_type               = var.namespace == "prod" ? "t3a.xlarge" : "t3a.large"
