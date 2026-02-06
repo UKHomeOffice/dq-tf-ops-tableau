@@ -2,7 +2,7 @@ resource "aws_instance" "tableau" {
   count                       = var.namespace == "prod" ? "1" : "2"
   key_name                    = var.key_name
   ami                         = data.aws_ami.tableau.id
-  instance_type               = var.namespace == "prod" ? "t3a.xlarge" : "t3a.large"
+  instance_type               = var.namespace == "prod" ? "t3a.xlarge" : "t3a.xlarge"
   vpc_security_group_ids      = [aws_security_group.tableau.id]
   subnet_id                   = aws_subnet.tableau_subnet.id
   private_ip                  = element(var.tableau_deployment_ip, count.index)
