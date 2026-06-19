@@ -47,7 +47,7 @@ resource "aws_instance" "tableau" {
 # private_ip is based off their being 2 instances in notprod and this resource creating a 3rd instance
 
 resource "aws_instance" "tableau_test" {
-  count                       = var.namespace == "prod" ? "0" : "0" # for testing a single instance only
+  count                       = var.namespace == "prod" ? "0" : "1" # for testing a single instance only
   key_name                    = var.key_name
   ami                         = data.aws_ami.tableau-test.id
   instance_type               = "t3a.large"
@@ -90,33 +90,6 @@ resource "aws_instance" "tableau_test" {
     Name = "tab-dep-test-${count.index + 1}-${local.naming_suffix}"
   }
 }
-
-
-# To be deleted when all Tab Dep machines have been migrated
-#resource "aws_instance" "tableau_nineteen" {
-#  key_name                    = var.key_name
-#  ami                         = data.aws_ami.tableau_nineteen.id
-#  instance_type               = var.namespace == "prod" ? "t3a.xlarge" : "t3a.large"
-#  vpc_security_group_ids      = [aws_security_group.tableau.id]
-#  subnet_id                   = aws_subnet.tableau_subnet.id
-#  private_ip                  = var.tableau_nineteen_deployment_ip
-#  iam_instance_profile        = aws_iam_instance_profile.tableau.id
-#  associate_public_ip_address = false
-#  monitoring                  = true
-#
-#  #lifecycle {
-#  #  prevent_destroy = true
-#  #
-#  #  ignore_changes = [
-#  #    user_data,
-#  #    ami,
-#  #  ]
-#  #}
-#
-#  tags = {
-#    Name = "tab-dep-nineteen-${local.naming_suffix}"
-#  }
-#}
 
 resource "aws_security_group" "tableau" {
   vpc_id = var.opsvpc_id
