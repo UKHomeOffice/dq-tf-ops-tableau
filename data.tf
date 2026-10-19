@@ -5,7 +5,7 @@ data "aws_ami" "tableau" {
     name = "name"
 
     values = [
-      var.namespace == "prod" ? "dq-ops-win-tab-dev-465*" : "dq-ops-win-tab-dev-474*",
+      var.namespace == "prod" ? "dq-ops-win-tab-dev-474*" : "dq-ops-win-tab-dev-474*",
     ]
   }
 
